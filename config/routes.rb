@@ -3,8 +3,8 @@ Rails.application.routes.draw do
 
   resources :tasks, only: [], param: :index do
     member do
-      delete '(:id)' => "tasks#destroy", as: ""
-      post '/' => "tasks#create"
+      delete '(:id)' => "tasks#destroy", as: "destroy"
+      get 'new/:scope' => "tasks#new", as: "new"
     end
   end
 

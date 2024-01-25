@@ -1,0 +1,14 @@
+<%= form.fields_for :projects do |project| %>
+
+  <%= project.submit(
+    "Add task",
+    formaction: new_task_path(scope: "#{form.object.class.to_s.underscore}[project_attributes]", index: project.object.tasks.size),
+    formmethod: :get,
+    formnovalidate: true,
+    id: "add-task",
+    data: {
+      turbo_stream: true,
+    }
+  )%>
+
+<% end %>
