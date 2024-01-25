@@ -1,0 +1,14 @@
+<%= turbo_frame_tag "task_#{form.index}" do %>
+  <%= form.hidden_field :id %>
+
+  <div>
+    <%= form.label :description, style: "display: block" %>
+    <%= form.text_field :description %>
+  </div>
+
+  <%= form.submit "destroy task", 
+        formaction: task_path(form.index, form.object.id), 
+        formmethod: :delete, 
+        formnovalidate: true, 
+        data: { turbo_frame: "task_#{form.index}" } %>
+<% end %>

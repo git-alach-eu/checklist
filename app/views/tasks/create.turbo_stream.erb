@@ -1,0 +1,15 @@
+<%= fields model: @project do |form| %>
+  <%= form.fields_for :tasks, child_index: params[:index] do |task_form| %>
+    <%= turbo_stream.replace "add-task" do %>
+      <%= form.submit "Add task", 
+            formaction: task_path(task_form.index.to_i + 1), 
+            formmethod: :post, 
+            formnovalidate: true, 
+            id: "add-task" %>
+    <% end %>
+
+    <%= turbo_stream.append "tasks" do %>
+      <%= render "form", form: task_form %>
+    <% end %>
+  <% end %>
+<% end %>
